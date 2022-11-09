@@ -1,7 +1,7 @@
 package com.example.au22_flashcard
 
-class WordList() {
-    private val wordList = mutableListOf<Word>()
+object WordList {
+     val wordList = mutableListOf<Word>()
     private val usedWords = mutableListOf<Word>()
 
     init {
@@ -10,34 +10,15 @@ class WordList() {
 
 
     fun initializeWords() {
-        val word = Word("Hello", "Hej")
+        val word = Word(0, "Hello", "Hej")
         wordList.add(word)
-        wordList.add(Word("Good bye", "Hej då"))
-        wordList.add(Word("Thank you", "Tack"))
-        wordList.add(Word("Welcome", "Välkommen"))
-        wordList.add(Word("Computer", "Dator"))
+        wordList.add(Word(0, "Good bye", "Hej då"))
+        wordList.add(Word(0, "Thank you", "Tack"))
+        wordList.add(Word(0, "Welcome", "Välkommen"))
+        wordList.add(Word(0, "Computer", "Dator"))
 
     }
 
-//    fun getNewWord() : Word {
-//        val rnd = (0 until wordList.size).random()
-//        return wordList[rnd]
-//    }
-
-
-    // alternativ 3
-//    fun getNewWord() : Word {
-//        if(wordList.isEmpty() ) {
-//            initializeWords()
-//        }
-//
-//        val rnd = (0 until wordList.size).random()
-//        val word = wordList.removeAt(rnd)
-//
-//        return word
-//    }
-
-    //alternativ 1
     fun getNewWord() : Word {
         if (wordList.size == usedWords.size) {
             usedWords.clear()
