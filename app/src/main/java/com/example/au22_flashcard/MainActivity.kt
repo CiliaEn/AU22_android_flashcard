@@ -12,9 +12,8 @@ import kotlin.coroutines.CoroutineContext
 
 class MainActivity : AppCompatActivity(), CoroutineScope {
 
-    lateinit var wordView : TextView
+    lateinit var wordButton : Button
     var currentWord : Word? = null
-   // val wordList = WordList
     lateinit var db : AppDatabase
     private lateinit var job : Job
     override val coroutineContext: CoroutineContext
@@ -27,11 +26,12 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         db = AppDatabase.getInstance(this)
         job = Job()
 
-        wordView = findViewById(R.id.wordTextView)
+        wordButton = findViewById(R.id.wordButton)
+
 
         showNewWord()
 
-        wordView.setOnClickListener {
+        wordButton.setOnClickListener {
             revealTranslation()
         }
 
@@ -44,12 +44,14 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
         val list  = loadAllItems()
 
         launch {
+
             val wordList = list.await()
 
             WordList.wordList.addAll(wordList)
 
 
             for(word in wordList) {
+
                 Log.d("!!!", "word: ${word.english}")
             }
         }
@@ -57,20 +59,27 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
 
     }
 
-    fun loadAllItems() : Deferred<List<Word>> =
+
+
+    private fun loadAllItems() : Deferred<List<Word>> =
         async (Dispatchers.IO) {
             db.wordDao.getAll()
         }
 
-    fun revealTranslation() {
-        wordView.text = currentWord?.english
+    private fun revealTranslation() {
+        if(wordButton.text == currentWord?.swedish){
+            wordButton.text = currentWord?.english
+        }else{
+            wordButton.text = currentWord?.swedish
+        }
+
     }
 
 
-    fun showNewWord() {
+    private fun showNewWord() {
 
         currentWord = WordList.getNewWord()
-        wordView.text = currentWord?.swedish
+        wordButton.text = currentWord?.swedish
     }
 
 
