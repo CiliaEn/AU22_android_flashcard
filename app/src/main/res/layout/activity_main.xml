@@ -4,17 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#7EBCC3E4"
     tools:context=".MainActivity">
-
-    <TextView
-        android:id="@+id/wordTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/addWordsButton"
@@ -23,9 +14,25 @@
         android:layout_marginStart="124dp"
         android:layout_marginEnd="125dp"
         android:layout_marginBottom="44dp"
+        android:backgroundTint="#4A5EC8"
         android:text="Add new words"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/wordButton"
+        android:layout_width="310dp"
+        android:layout_height="174dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="51dp"
+        android:backgroundTint="#BA7082E1"
+        android:text="Could not load word"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.385" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
