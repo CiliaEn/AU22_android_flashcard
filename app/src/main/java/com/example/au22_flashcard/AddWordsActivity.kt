@@ -42,6 +42,7 @@ class AddWordsActivity : AppCompatActivity(), CoroutineScope {
             saveItem(word)
             swedishWordEditText.setText("")
             englishWordEditText.setText("")
+            //test
         }
     }
 
