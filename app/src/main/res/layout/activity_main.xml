@@ -9,28 +9,36 @@
 
     <Button
         android:id="@+id/addWordsButton"
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="124dp"
-        android:layout_marginEnd="125dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="10dp"
         android:backgroundTint="#4A5EC8"
         android:text="Add new words"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/removeWordsButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/wordButton"
+        android:id="@+id/removeWordsButton"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:backgroundTint="#4A5EC8"
+        android:text="remove words"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/flashCardButton"
         android:layout_width="310dp"
         android:layout_height="174dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="51dp"
         android:backgroundTint="#BA7082E1"
         android:text="Could not load word"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.385" />

@@ -9,12 +9,12 @@ import androidx.room.Query
 interface WordDao {
 
     @Insert
-    fun insert (word: Word)
+    fun insert(word: Word)
 
     @Delete
     fun delete(word: Word)
 
     @Query("SELECT * FROM word_table")
-    fun getAll() : List<Word>
+    fun getAll(): List<Word>
 
 }

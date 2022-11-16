@@ -14,49 +14,50 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
 class AddWordsActivity : AppCompatActivity(), CoroutineScope {
-    
-    lateinit var swedishWordEditText: EditText
-    lateinit var englishWordEditText: EditText
-    lateinit var db : AppDatabase
-    private lateinit var job : Job
+
+
+    lateinit var db: AppDatabase
+    lateinit var job: Job
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Main + job
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_words)
-        job = Job()
 
+        job = Job()
         db = AppDatabase.getInstance(this)
 
-        swedishWordEditText = findViewById(R.id.swedishWordEditText)
-        englishWordEditText = findViewById(R.id.englishWordEditText)
+        val swedishWordEditText = findViewById<EditText>(R.id.swedishWordEditText)
+        val englishWordEditText = findViewById<EditText>(R.id.englishWordEditText)
 
-        val doneButton = findViewById<ImageButton>(R.id.backButton)
-        doneButton.setOnClickListener {
+        val backButton = findViewById<ImageButton>(R.id.backButton)
+        backButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-        
+
         val addWordButton = findViewById<Button>(R.id.addWordButton)
-        addWordButton.setOnClickListener { 
-            var swedishWord = swedishWordEditText.text.toString()
-            var englishWord = englishWordEditText.text.toString()
-            var word = Word(0, englishWord, swedishWord)
-            saveItem(word)
+        addWordButton.setOnClickListener {
+            val englishWord = englishWordEditText.text.toString()
+            val swedishWord = swedishWordEditText.text.toString()
+            val word = Word(0, englishWord, swedishWord)
+
+            saveWord(word)
             swedishWordEditText.setText("")
             englishWordEditText.setText("")
-            Toast.makeText(this, "$swedishWord-$englishWord was added to flashcards!", Toast.LENGTH_SHORT).show()
+
+            Toast.makeText(
+                this,
+                "$swedishWord-$englishWord was added to flashcards!",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
-    private fun saveItem(word: Word) {
+    private fun saveWord(word: Word) {
         launch(Dispatchers.IO) {
             db.wordDao.insert(word)
         }
     }
-    private fun delete(word : Word) =
-        launch(Dispatchers.IO) {
-            db.wordDao.delete(word)
-        }
 }
